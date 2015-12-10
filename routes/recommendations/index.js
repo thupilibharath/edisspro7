@@ -6,6 +6,9 @@ exports.getRecommendations = function(req,res){
 
     console.log('*****RECOMMENDATIONS------------');
 
+    var sess = req.session;
+
+    if(sess.username){
     var collection = db.collection('links');
     var id = req.body.productId;
     var arr1=[];var arr2=[];var temp;var temp1;var result = [];
@@ -54,12 +57,17 @@ exports.getRecommendations = function(req,res){
             result[4] = arr1[4]
 
 
-            res.json({message: 'the request was successful', relatedProducts: result});
+            res.json({message: 'the request was successful', relatedProducts: result, data:'relatedProducts:'});
         }
         else{
             res.json('there was a problem processing the request');
         }
+
     });
+    }
+    else {
+        res.json('there was a problem processing the request');
+    }
 
 
 };

@@ -14,13 +14,10 @@
 
  */
 var lineReader = require('line-reader');
-var mysql = require('mysql');
-var squel = require('squel');
 var fs = require('fs');
 
 var record = new Object();
 record.categories = [];
-var jsonRecord;
 var already = false;
 var categories = false;
 var stop = 0;

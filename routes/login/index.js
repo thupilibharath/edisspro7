@@ -14,8 +14,6 @@ exports.loginsuccess = function (req, res) {
         console.log(pwd);
 
         var sess = req.session;
-        sess.username = uname;
-        sess.pwd = pwd;
 
         console.log('sessionID  ' + sess.id);
         console.log(sess.cookie.maxAge);
@@ -37,7 +35,9 @@ exports.loginsuccess = function (req, res) {
                 var role = rows[0].role;
                 sess.role = role;
 
-                if (uname1 == uname && pwd1 == pwd && role == 'admin' && sess.username) {// Admin user; fetch details of normal users
+                if (uname1 == uname && pwd1 == pwd && role == 'admin') {// Admin user; fetch details of normal users
+                    sess.username = uname;
+                    sess.pwd = pwd;
                     res.setHeader('Content-Type', 'application/json');
                     res.send(JSON.stringify({
                         menu: '{/updateInfo , /logout, /getProducts, /viewUsers, /modifyProducts, /getOrders}'
@@ -45,7 +45,9 @@ exports.loginsuccess = function (req, res) {
 
                 }
 
-                else if (uname1 == uname && pwd1 == pwd && role == 'normal' && sess.username) {
+                else if (uname1 == uname && pwd1 == pwd && role == 'normal') {
+                    sess.username = uname;
+                    sess.pwd = pwd;
                     res.setHeader('Content-Type', 'application/json');
                     res.send(JSON.stringify({
                         menu: '{/updateInfo , /logout, /getProducts, /buyProduct}'
