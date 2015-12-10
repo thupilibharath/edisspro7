@@ -19,7 +19,7 @@
 var lineReader = require('line-reader');
 var mongojs = require('mongojs');
 var fs = require('fs');
-var mongoURL = 'mongodb://localhost:27017/Project5';
+var mongoURL = 'mongodb://54.152.184.110:27017/Project5';
 db = mongojs(mongoURL, [], {
     authMechanism: 'ScramSHA1'
 });

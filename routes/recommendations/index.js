@@ -12,7 +12,7 @@ exports.getRecommendations = function(req,res){
     var collection = db.collection('links');
     var id = req.body.productId;
     var arr1=[];var arr2=[];var temp;var temp1;var result = [];
-    collection.find({id1:id}).toArray(function(err, rows){
+    collection.find({$or:[{id1:id,id2:id}]}).toArray(function(err, rows){
         if(!err) {
             var map = require('hashmap');
             var mymap = new map();
